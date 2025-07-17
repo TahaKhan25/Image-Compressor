@@ -251,3 +251,58 @@ footer {
 .logo-accent {
   color: #facc15;
 }
+
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem; /* push it slightly down */
+  padding-top: 1rem; /* add space inside the block if needed */
+  background-color: #0f172a; /* match your site's main bg */
+  border-bottom: 1px solid #1e293b;
+}
+
+.mode-toggle button {
+  padding: 0.6rem 1.2rem;
+  background: #1e293b;
+  color: #fff;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.mode-toggle button.active,
+.mode-toggle button:hover {
+  background: #38bdf8;
+  color: #000;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #ff4d4d;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.remove-btn:hover {
+  color: #ff0000;
+  transform: scale(1.2);
+}
+
+.preview-box {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: var(--card-bg, #1e1e1e);
+  text-align: center;
+}
+

@@ -5,7 +5,9 @@ import MultipleImageCompressor from "./MultipleImageCompressor";
 
 
 function App() {
+  
   const [mode, setMode] = useState<"single" | "multiple">("single");
+  
 
   return (
     <div className="site-container">

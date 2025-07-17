@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import "./App.css"; // Ensure this contains the spinner styles
 
 function formatBytes(bytes: number): string {
   const sizes = ["Bytes", "KB", "MB"];
@@ -20,12 +21,12 @@ export default function MultipleImageCompressor() {
     }[]
   >([]);
   const [compressionLevel, setCompressionLevel] = useState<number>(60);
+  const [isCompressing, setIsCompressing] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const files = Array.from(e.target.files);
-
       const previews = files.map((file) => {
         return new Promise<{
           originalUrl: string;
@@ -56,6 +57,7 @@ export default function MultipleImageCompressor() {
   };
 
   const handleCompress = () => {
+    setIsCompressing(true);
     const compressions = imageData.map((item) => {
       return new Promise((resolve) => {
         const img = new Image();
@@ -86,6 +88,7 @@ export default function MultipleImageCompressor() {
 
     Promise.all(compressions).then((results) => {
       setImageData(results as any);
+      setIsCompressing(false);
     });
   };
 
@@ -126,7 +129,9 @@ export default function MultipleImageCompressor() {
       </p>
 
       <div className="controls-panel">
-        <label htmlFor="compression-slider">Compression Level: {compressionLevel}%</label>
+        <label htmlFor="compression-slider">
+          Compression Level: {compressionLevel}%
+        </label>
         <input
           id="compression-slider"
           type="range"
@@ -136,8 +141,12 @@ export default function MultipleImageCompressor() {
           onChange={(e) => setCompressionLevel(Number(e.target.value))}
         />
         <div className="btn-group">
-          <button className="compress-btn" onClick={handleCompress} disabled={images.length === 0}>
-            Compress All
+          <button
+            className="compress-btn"
+            onClick={handleCompress}
+            disabled={images.length === 0 || isCompressing}
+          >
+            {isCompressing ? <div className="loader"></div> : "Compress All"}
           </button>
           <button className="reset-btn" onClick={handleReset}>
             Reset
@@ -155,7 +164,6 @@ export default function MultipleImageCompressor() {
               <h3>{img.name}</h3>
               <img src={img.originalUrl} alt="Original preview" />
               <p>Original: {formatBytes(img.originalSize)}</p>
-
               {img.compressedUrl && (
                 <>
                   <img src={img.compressedUrl} alt="Compressed preview" />

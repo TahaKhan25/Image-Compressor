@@ -1,6 +1,5 @@
-// SingleImageCompressor.tsx
 import { useState, useRef } from "react";
-import "./App.css";
+import "./App.css"; // Spinner CSS included here
 
 function formatBytes(bytes: number): string {
   const sizes = ["Bytes", "KB", "MB"];
@@ -18,6 +17,7 @@ export default function SingleImageCompressor() {
   const [compressedSize, setCompressedSize] = useState<number | null>(null);
   const [compressionLevel, setCompressionLevel] = useState<number>(60);
   const [originalFileName, setOriginalFileName] = useState<string>("compressed");
+  const [isCompressing, setIsCompressing] = useState<boolean>(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -64,6 +64,8 @@ export default function SingleImageCompressor() {
   const handleCompress = () => {
     if (!originalImageObj) return;
 
+    setIsCompressing(true);
+
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -80,6 +82,7 @@ export default function SingleImageCompressor() {
 
     setCompressed(compressedData);
     setCompressedSize(compressedBytes);
+    setIsCompressing(false);
   };
 
   const handleReset = () => {
@@ -129,8 +132,12 @@ export default function SingleImageCompressor() {
           onChange={(e) => setCompressionLevel(Number(e.target.value))}
         />
         <div className="btn-group">
-          <button className="compress-btn" onClick={handleCompress} disabled={!originalImageObj}>
-            Compress Image
+          <button
+            className="compress-btn"
+            onClick={handleCompress}
+            disabled={!originalImageObj || isCompressing}
+          >
+            {isCompressing ? <div className="loader"></div> : "Compress Image"}
           </button>
           <button className="reset-btn" onClick={handleReset}>
             Reset
@@ -161,34 +168,33 @@ export default function SingleImageCompressor() {
           )}
         </div>
       </div>
+
       <section className="features">
-          <div className="feature-card">
-            <h4>Perfect Quality</h4>
-            <p>Retain image quality while drastically reducing file size.</p>
-          </div>
-          <div className="feature-card">
-            <h4>Fast Compression</h4>
-            <p>Compress images in seconds directly in your browser.</p>
-          </div>
-          <div className="feature-card">
-            <h4>Secure & Private</h4>
-            <p>Images never leave your device. Compression happens locally.</p>
-          </div>
-          <div className="feature-card">
-            <h4>Custom Compression Scale</h4>
-            <p>Adjust compression strength to suit your quality needs.</p>
-          </div>
-          <div className="feature-card">
-            <h4>No Limits</h4>
-            <p>Compress as many images as you like for free.</p>
-          </div>
-          <div className="feature-card">
-            <h4>Download Easily</h4>
-            <p>One-click download for your compressed images.</p>
-          </div>
-        </section>
-        
+        <div className="feature-card">
+          <h4>Perfect Quality</h4>
+          <p>Retain image quality while drastically reducing file size.</p>
+        </div>
+        <div className="feature-card">
+          <h4>Fast Compression</h4>
+          <p>Compress images in seconds directly in your browser.</p>
+        </div>
+        <div className="feature-card">
+          <h4>Secure & Private</h4>
+          <p>Images never leave your device. Compression happens locally.</p>
+        </div>
+        <div className="feature-card">
+          <h4>Custom Compression Scale</h4>
+          <p>Adjust compression strength to suit your quality needs.</p>
+        </div>
+        <div className="feature-card">
+          <h4>No Limits</h4>
+          <p>Compress as many images as you like for free.</p>
+        </div>
+        <div className="feature-card">
+          <h4>Download Easily</h4>
+          <p>One-click download for your compressed images.</p>
+        </div>
+      </section>
     </>
-    
   );
 }

@@ -13,10 +13,8 @@ function App() {
     <div className="site-container">
       <header>
         <div className="logo-container">
-          <img src="/src/assets/logo1.png" alt="logo" className="logo" />
-          <span className="logo-text">
-            ImageCompressor <span className="logo-accent">Pro</span>
-          </span>
+          <img src="/public/logo1.png" alt="logo" className="logo" />
+          
         </div>
         <h1>📷 ImageCompressor Pro</h1>
         <p>Free and powerful image compression tool for smart file size reduction</p>

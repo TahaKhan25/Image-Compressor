@@ -243,7 +243,7 @@ footer {
 }
 
 .logo-text {
-  font-size: 1.1rem;
+  font-size: 0.1 rem;
   font-weight: bold;
   color: #38bdf8;
 }
@@ -321,3 +321,157 @@ footer {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+.download-all-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.download-all-btn:hover {
+  background-color: #43a047;
+}
+
+/* ─── Tablet (max-width: 1024px) ───────────────── */
+@media (max-width: 1024px) {
+  .controls-panel,
+  .upload-area,
+  .preview-box {
+    max-width: 90%;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .feature-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .btn-group {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .compress-btn,
+  .reset-btn,
+  .download-all-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ─── Mobile (max-width: 768px) ───────────────── */
+@media (max-width: 768px) {
+  main {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .upload-area {
+    padding: 2rem 1rem;
+  }
+
+  .upload-instructions p {
+    font-size: 1rem;
+  }
+
+  .controls-panel {
+    padding: 1.5rem;
+    gap: 1rem;
+    max-width: 95%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .compress-btn,
+  .reset-btn,
+  .download-all-btn {
+    width: 100%;
+  }
+
+  .preview-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .preview-box {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .feature-card {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ─── Small phones (max-width: 480px) ───────────── */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  header p {
+    font-size: 0.95rem;
+  }
+
+  .upload-instructions .hint {
+    font-size: 0.85rem;
+  }
+
+  .feature-card h4 {
+    font-size: 1rem;
+  }
+
+  .preview-box {
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  .preview-box img {
+    max-height: 250px;
+    object-fit: contain;
+  }
+
+  .controls-panel label {
+    font-size: 0.95rem;
+    text-align: center;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .compress-btn,
+  .reset-btn,
+  .download-all-btn {
+    font-size: 0.9rem;
+  }
+
+  .mode-toggle {
+    flex-direction: column;
+    padding-bottom: 1rem;
+  }
+}
+
+

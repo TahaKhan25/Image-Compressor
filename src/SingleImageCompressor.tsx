@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import "./App.css"; // Spinner CSS included here
+import { useState, useRef, useEffect } from "react";
+import "./App.css"; // Make sure you apply responsive styles in here
 
 function formatBytes(bytes: number): string {
   const sizes = ["Bytes", "KB", "MB"];
@@ -20,6 +20,13 @@ export default function SingleImageCompressor() {
   const [isCompressing, setIsCompressing] = useState<boolean>(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null); // For scroll-to
+
+  useEffect(() => {
+    if (original && previewRef.current) {
+      previewRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [original]);
 
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -145,7 +152,7 @@ export default function SingleImageCompressor() {
         </div>
       </div>
 
-      <div className="image-preview">
+      <div className="image-preview" ref={previewRef}>
         <div className="preview-section">
           {original && (
             <div className="preview-box">

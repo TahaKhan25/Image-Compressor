@@ -13,7 +13,7 @@ function App() {
     <div className="site-container">
       <header>
         <div className="logo-container">
-          <img src="/public/logo1.png" alt="logo" className="logo" />
+          <img src="/public/logo.png" alt="logo" className="logo" />
           
         </div>
         <h1>📷 ImageCompressor Pro</h1>
